@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To Do App</title>
+</head>
+
+<body>
+
+<h3>Tasks</h3>
+<ul id="list"></ul>
+
+<hr>
+
+<h3>Add Task</h3>
+<form id="form">
+    <input type="text" id="task" required>
+    <button>Add</button>
+</form>
+
+<script>
+    let form = document.getElementById("form");
+    let input = document.getElementById("task");
+    let list = document.getElementById("list");
+
+    form.onsubmit = function(e){
+        e.preventDefault();
+
+        let li = document.createElement("li");
+
+        let span = document.createElement("span");
+        span.innerText = input.value;
+
+        let doneBtn = document.createElement("button");
+        doneBtn.innerText = "✔";
+        doneBtn.onclick = function(){
+            if(span.style.textDecoration === "line-through"){
+                span.style.textDecoration = "none";
+            } else {
+                span.style.textDecoration = "line-through";
+            }
+        };
+
+        let delBtn = document.createElement("button");
+        delBtn.innerText = "❌";
+        delBtn.onclick = function(){
+            li.remove();
+        };
+
+        li.appendChild(span);
+        li.appendChild(doneBtn);
+        li.appendChild(delBtn);
+
+        list.appendChild(li);
+
+        input.value = "";
+    };
+</script>
+
+</body>
+</html>
